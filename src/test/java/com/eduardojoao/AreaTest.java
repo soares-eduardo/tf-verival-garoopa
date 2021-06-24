@@ -18,7 +18,7 @@ import org.junit.jupiter.params.provider.CsvSource;
  */
 public class AreaTest {
 
-    private Area areaUnderTest;
+    private Area areaTeste;
     private Ponto pSupEsq;
     private Ponto pInfDir;
 
@@ -26,11 +26,11 @@ public class AreaTest {
     void setUp() {
         pSupEsq = new Ponto(2, 5);
         pInfDir = new Ponto(4, 3);
-        areaUnderTest = new Area(pSupEsq, pInfDir);
+        areaTeste = new Area(pSupEsq, pInfDir);
     }
 
     @Test
-    public void itShouldCreateAreaConstructor() {
+    public void testarLogicaConstrutorArea() {
 
         // then
         assertEquals(2, pSupEsq.getX());
@@ -40,7 +40,7 @@ public class AreaTest {
     }
 
     @Test
-    public void throwIllegalArgumentWhenCreatingConstructor() {
+    public void dispararIllegalArgumentAoCriarObjetoArea() {
 
         // given
         Ponto pSupEsq = new Ponto(8, 6);
@@ -48,18 +48,18 @@ public class AreaTest {
 
         // when
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            areaUnderTest = new Area(pSupEsq, pInfDir);
+            areaTeste = new Area(pSupEsq, pInfDir);
         });
 
-        String expectedMessage = "O retangulo deve ser definido pela diagonal principal";
-        String actualMessage = exception.getMessage();
+        String mensagemEsperada = "O retangulo deve ser definido pela diagonal principal";
+        String mensagemAtual = exception.getMessage();
 
         // then
-        assertTrue(actualMessage.contains(expectedMessage));
+        assertTrue(mensagemAtual.contains(mensagemEsperada));
     }
 
     @Test
-    public void itShouldReturnObjectPontoCentral() {
+    public void retornarObjectoPontoCentral() {
 
         // given
         int pontoCentralX = 3;
@@ -67,59 +67,59 @@ public class AreaTest {
 
         // when
         // then
-        Ponto pontoCentral = areaUnderTest.pontoCentral();
+        Ponto pontoCentral = areaTeste.pontoCentral();
 
         assertEquals(pontoCentralX, pontoCentral.getX());
         assertEquals(pontoCentralY, pontoCentral.getY());
     }
 
     @Test
-    public void pontoShouldBeAboveAndRight() {
+    public void retornarPontoAcimaDireita() {
 
         // given
-        Ponto givenPonto = new Ponto(8, 10);
+        Ponto ponto = new Ponto(8, 10);
 
         // when
-        byte cod = areaUnderTest.codificaPonto(givenPonto);
+        byte cod = areaTeste.codificaPonto(ponto);
 
         // then
         assertEquals(5, cod);
     }
 
     @Test
-    public void pontoShouldBeAboveAndLeft() {
+    public void retornarPontoAcimaEsquerda() {
 
         // given
-        Ponto givenPonto = new Ponto(1, 10);
+        Ponto ponto = new Ponto(1, 10);
 
         // when
-        byte cod = areaUnderTest.codificaPonto(givenPonto);
+        byte cod = areaTeste.codificaPonto(ponto);
 
         // then
         assertEquals(9, cod);
     }
 
     @Test
-    public void pontoShouldBeBellowAndRight() {
+    public void retornarPontoAbaixoDireita() {
 
         // given
-        Ponto givenPonto = new Ponto(5, 2);
+        Ponto ponto = new Ponto(5, 2);
 
         // when
-        byte cod = areaUnderTest.codificaPonto(givenPonto);
+        byte cod = areaTeste.codificaPonto(ponto);
 
         // then
         assertEquals(6, cod);
     }
 
     @Test
-    public void pontoShouldBeBellowAndLeft() {
+    public void retornarPontoAbaixoEsquerda() {
 
         // given
-        Ponto givenPonto = new Ponto(1, 2);
+        Ponto ponto = new Ponto(1, 2);
 
         // when
-        byte cod = areaUnderTest.codificaPonto(givenPonto);
+        byte cod = areaTeste.codificaPonto(ponto);
 
         // then
         assertEquals(10, cod);
@@ -128,10 +128,10 @@ public class AreaTest {
     @ParameterizedTest
     @CsvSource({"15, 40, 35, 40, TODA_DENTRO",
                 "15,  5, 35,  5, TODA_FORA"})
-    public void itShouldRetornAnySituacaoRetaValue(int x1, int y1, int x2, int y2, String status) {
+    public void retornarAlgumStatus(int x1, int y1, int x2, int y2, String status) {
 
         //given
-        areaUnderTest = new Area(new Ponto(10,50), new Ponto(60,10));
+        areaTeste = new Area(new Ponto(10,50), new Ponto(60,10));
         Reta reta = new Reta(new Ponto(x1,y1), new Ponto(x2, y2));
 
         // when
@@ -143,6 +143,6 @@ public class AreaTest {
         };
 
         //then
-        assertEquals(statusReta, areaUnderTest.classifica(reta));
+        assertEquals(statusReta, areaTeste.classifica(reta));
     }
 }

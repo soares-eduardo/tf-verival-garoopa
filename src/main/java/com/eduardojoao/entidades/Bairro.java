@@ -24,12 +24,7 @@ public class Bairro {
         this.area = area;
         this.custoTransporte = custoTransporte;
     }
-
-    // Added an empty constructor to access bairro creators.
-    public Bairro() {
-
-    }
-
+    
     public String getNome() {
         return nome;
     }

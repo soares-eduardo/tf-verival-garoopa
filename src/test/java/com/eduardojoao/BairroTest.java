@@ -19,7 +19,7 @@ import org.junit.jupiter.api.*;
  */
 public class BairroTest {
 
-    private Bairro bairroUnderTest;
+    private Bairro bairroTeste;
     private Ponto pSupEsq;
     private Area a1, a2;
     private Reta reta1, reta2;
@@ -27,7 +27,7 @@ public class BairroTest {
     @BeforeEach
     void setUp() {
         pSupEsq = new Ponto(3, 5);
-        bairroUnderTest = Bairro.novoBairroQuadrado("Bom Fim", pSupEsq, 2, 10.0);
+        bairroTeste = Bairro.novoBairroQuadrado("Bom Fim", pSupEsq, 2, 10.0);
 
         reta1 = new Reta(new Ponto(10,10), new Ponto(20,10));
         reta2 = new Reta(new Ponto(10,10), new Ponto(20,20));
@@ -40,35 +40,36 @@ public class BairroTest {
         when(a2.classifica(reta1)).thenReturn(SituacaoReta.INTERSECTA);
     }
 
+    // TODO
     @Test
-    public void itShouldCreateANewBairro() {
+    public void criarUmNovoBairro() {
         Bairro bairro = new Bairro("Auxiliadora", a2, 10);
     }
 
     @Test
-    public void itShouldChangeCustoTransporteValue() {
+    public void mudarCustoTransporte() {
         
         // given
         // when
-        bairroUnderTest.alteraCustoTransporte(12);
+        bairroTeste.alteraCustoTransporte(12);
 
         // then
-        assertEquals(12, bairroUnderTest.getCustoTransporte());
+        assertEquals(12, bairroTeste.getCustoTransporte());
     }
 
     @Test
-    public void itShouldThrowIllegalArgumentWhenChangingCustoTransporteValue() {
+    public void dispararIllegalArgumentAoMudarCustoTransporte() {
 
         // given
         // when
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            bairroUnderTest.alteraCustoTransporte(-1);
+            bairroTeste.alteraCustoTransporte(-1);
         });
 
-        String expectedMessage = "Valor invalido";
-        String actualMessage = exception.getMessage();
+        String mensagemEsperada = "Valor invalido";
+        String mensagemAtual = exception.getMessage();
 
         // then
-        assertTrue(actualMessage.contains(expectedMessage));
+        assertTrue(mensagemAtual.contains(mensagemEsperada));
     }
 }

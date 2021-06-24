@@ -18,40 +18,37 @@ import org.junit.jupiter.api.*;
  */
 public class RoteiroTest {
 
-    private List<Bairro> bairroList;
+    private List<Bairro> listaBairros;
 
     @BeforeEach
     void setUp() {
-        bairroList = new ArrayList<>();
-        bairroList.add(Bairro.novoBairroRetangular("Bom Fim", new Ponto(10,40), 20, 10, 10.0));
-        bairroList.add(Bairro.novoBairroRetangular("Independencia", new Ponto(30,40), 20, 10, 20.0));
-        bairroList.add(Bairro.novoBairroRetangular("Moinhos de Vento", new Ponto(20,30), 20, 10, 30.0));
-        bairroList.add(Bairro.novoBairroRetangular("Auxiliadora", new Ponto(40,30), 20, 10, 20.0));
-        bairroList.add(Bairro.novoBairroRetangular("Boa Vista", new Ponto(40,20), 20, 10, 20.0));
+        listaBairros = new ArrayList<>();
+        listaBairros.add(Bairro.novoBairroRetangular("Bom Fim", new Ponto(10,40), 20, 10, 10.0));
+        listaBairros.add(Bairro.novoBairroRetangular("Independencia", new Ponto(30,40), 20, 10, 20.0));
+        listaBairros.add(Bairro.novoBairroRetangular("Moinhos de Vento", new Ponto(20,30), 20, 10, 30.0));
+        listaBairros.add(Bairro.novoBairroRetangular("Auxiliadora", new Ponto(40,30), 20, 10, 20.0));
+        listaBairros.add(Bairro.novoBairroRetangular("Boa Vista", new Ponto(40,20), 20, 10, 20.0));
     }
 
     @Test
-    public void itShouldATestARoute() {
-        Roteiro script  = new Roteiro(bairroList.get(1), bairroList.get(4), bairroList);
-        Reta route = new Reta(new Ponto(40, 35), new Ponto(50,15));
-        assertEquals(route, script.getRota());
+    public void testarRota() {
+        Roteiro script  = new Roteiro(listaBairros.get(1), listaBairros.get(4), listaBairros);
+        Reta rota = new Reta(new Ponto(40, 35), new Ponto(50,15));
+        assertEquals(rota, script.getRota());
     }
 
     @Test
-    public void itShouldTestTraveledRoutes() {
+    public void testarRotasPercorridas() {
 
-        Roteiro script = new Roteiro(bairroList.get(1), bairroList.get(4), bairroList);
-        Collection<Bairro> expected = new ArrayList<>();
+        Roteiro script = new Roteiro(listaBairros.get(1), listaBairros.get(4), listaBairros);
+        Collection<Bairro> bairrosPercorridos = new ArrayList<>();
 
-        expected.add(bairroList.get(1));
-        expected.add(bairroList.get(2));
-        expected.add(bairroList.get(3));
-        expected.add(bairroList.get(4));
+        bairrosPercorridos.add(listaBairros.get(1));
+        bairrosPercorridos.add(listaBairros.get(2));
+        bairrosPercorridos.add(listaBairros.get(3));
+        bairrosPercorridos.add(listaBairros.get(4));
 
-        Collection<Bairro> underTest = script.bairrosPercoridos();
-        assertEquals(expected, underTest);
+        Collection<Bairro> bairrosTestados = script.bairrosPercoridos();
+        assertEquals(bairrosPercorridos, bairrosTestados);
     }
-
-    
-
 }

@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.CsvSource;
  */
 public class PassageiroTest {
 
-    private static Passageiro passageiroUnderTest;
+    private static Passageiro passageiroTeste;
 
     private static String cpf;
     private static String name;
@@ -24,24 +24,24 @@ public class PassageiroTest {
     void setUp() {
         cpf = "60076180050";
         name = "Eduardo";
-        passageiroUnderTest = Passageiro.novoPassageiro(cpf, name);
+        passageiroTeste = Passageiro.novoPassageiro(cpf, name);
     }
 
     @Test
-    public void itShouldCreateAndReturnANewPassageiro() {
+    public void criarERetornarUmPassageiro() {
 
         // give
         // when
         // then
         
-        assertEquals(cpf, passageiroUnderTest.getCPF());
-        assertEquals(name, passageiroUnderTest.getNome());
-        assertEquals(8, passageiroUnderTest.getPontuacaoAcumulada());
-        assertEquals(1, passageiroUnderTest.getQtdadeAvaliacoes());
+        assertEquals(cpf, passageiroTeste.getCPF());
+        assertEquals(name, passageiroTeste.getNome());
+        assertEquals(8, passageiroTeste.getPontuacaoAcumulada());
+        assertEquals(1, passageiroTeste.getQtdadeAvaliacoes());
     }
 
     @Test
-    public void itShouldUpdateAndReturnANewPassageiro() {
+    public void atualizarERetornarPassageiro() {
 
         // give
 
@@ -50,28 +50,29 @@ public class PassageiroTest {
 
         // when
 
-        passageiroUnderTest = Passageiro.passageiroExistente(cpf, name, pontuacaoAcumulada, qtdadeAvaliacoes);
+        passageiroTeste = Passageiro.passageiroExistente(cpf, name, pontuacaoAcumulada, qtdadeAvaliacoes);
 
         // then
 
-        assertEquals(cpf, passageiroUnderTest.getCPF());
-        assertEquals(name, passageiroUnderTest.getNome());
-        assertEquals(pontuacaoAcumulada, passageiroUnderTest.getPontuacaoAcumulada());
-        assertEquals(qtdadeAvaliacoes, passageiroUnderTest.getQtdadeAvaliacoes());
+        assertEquals(cpf, passageiroTeste.getCPF());
+        assertEquals(name, passageiroTeste.getNome());
+        assertEquals(pontuacaoAcumulada, passageiroTeste.getPontuacaoAcumulada());
+        assertEquals(qtdadeAvaliacoes, passageiroTeste.getQtdadeAvaliacoes());
     }
 
     @Test
-    public void itShoudReturnAvgOfPontuacaoAcumuladaAndQtdadeAvaliacoes() {
+    // retornar media da pontuacao e atualizar a qtd de avaliacoes
+    public void retornarMediaDaPontuacao() {
 
         // give
         // when
         // then
 
-        assertEquals(8, passageiroUnderTest.getPontuacaoMedia());
+        assertEquals(8, passageiroTeste.getPontuacaoMedia());
     }
 
     @Test
-    public void itShouldIncreasePontuacaoAcumuladaAndQtdadeAvaliacoes() {
+    public void atualizarPontuacaoAcumuladaEQtdAvaliacoes() {
 
         // give
 
@@ -79,30 +80,31 @@ public class PassageiroTest {
 
         // when
 
-        passageiroUnderTest.infoPontuacao(pontuacao);
+        passageiroTeste.infoPontuacao(pontuacao);
 
         // then
 
-        assertEquals(10, passageiroUnderTest.getPontuacaoAcumulada());
-        assertEquals(2, passageiroUnderTest.getQtdadeAvaliacoes());
+        assertEquals(10, passageiroTeste.getPontuacaoAcumulada());
+        assertEquals(2, passageiroTeste.getQtdadeAvaliacoes());
     }
 
     @ParameterizedTest
     @CsvSource({ "-2", "0" })
-    public void itShouldThrowIllegalArgumentCasePontuacaoLessThenOrEqualsToZero(int pontuacao) {
+    //
+    public void retornarIllegalArgumentCasoPontuacaoMenorOuIgualAZero(int pontuacao) {
 
         // give
         // when
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            passageiroUnderTest.infoPontuacao(pontuacao);
+            passageiroTeste.infoPontuacao(pontuacao);
         });
 
-        String expectedMessage = "Pontucao invalida !";
-        String actualMessage = exception.getMessage();
+        String mensagemEsperada = "Pontucao invalida !";
+        String mensagemAtual = exception.getMessage();
 
         // then
 
-        assertTrue(actualMessage.contains(expectedMessage));
+        assertTrue(mensagemAtual.contains(mensagemEsperada));
     }
 }

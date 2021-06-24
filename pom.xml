@@ -6,7 +6,11 @@
     <artifactId>verivaltf</artifactId>
     <version>eduardojoao</version>
 
-    
+    <properties>
+        <sonar.projectKey>soares-eduardo_tf-verival-garoopa</sonar.projectKey>
+        <sonar.organization>soares-eduardo</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    </properties>
 
     <dependencies>
 

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.*;
 public class CustoViagemTest {
 
     @Test
-    public void itShouldTestCustoViagem() {
+    public void testarCustoViagem() {
         CalculoCustoViagem ccv = mock(CalculoCustoViagemBasico.class);
         when(ccv.custoViagem()).thenReturn(35.0);
 
