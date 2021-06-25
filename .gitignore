@@ -1,3 +1,14 @@
 .devcontainer
 .availability.log
 .DS_Store
+.vscode
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+target/
