@@ -1,0 +1,17 @@
+com/eduardojoao/entidades/Viagem.class
+com/eduardojoao/casosDeUso/Politicas/CustoViagem.class
+com/eduardojoao/entidades/geometria/Ponto.class
+com/eduardojoao/casosDeUso/Politicas/CalculoCustoViagemVerao.class
+com/eduardojoao/entidades/geometria/Reta.class
+com/eduardojoao/casosDeUso/Politicas/CalculoCustoViagemBasico.class
+com/eduardojoao/App.class
+com/eduardojoao/entidades/Roteiro.class
+com/eduardojoao/casosDeUso/Repositorios/RepositorioPassageiros.class
+com/eduardojoao/casosDeUso/Politicas/CalculoCustoViagemRelampago.class
+com/eduardojoao/entidades/Bairro.class
+com/eduardojoao/casosDeUso/Politicas/CalculoCustoViagem.class
+com/eduardojoao/entidades/geometria/Area.class
+com/eduardojoao/entidades/Passageiro.class
+com/eduardojoao/casosDeUso/Repositorios/RepositorioBairros.class
+com/eduardojoao/entidades/geometria/SituacaoReta.class
+com/eduardojoao/casosDeUso/Servicos/ServicosPassageiro.class
