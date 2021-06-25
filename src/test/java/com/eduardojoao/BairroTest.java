@@ -13,6 +13,7 @@ import com.eduardojoao.entidades.geometria.Reta;
 import com.eduardojoao.entidades.geometria.SituacaoReta;
 
 import org.junit.jupiter.api.*;
+import org.mockito.Mock;
 
 /**
  * BairroTest
@@ -40,10 +41,29 @@ public class BairroTest {
         when(a2.classifica(reta1)).thenReturn(SituacaoReta.INTERSECTA);
     }
 
+    @Mock
+    Bairro mockBairro = mock(Bairro.class);
+    
     // TODO
     @Test
     public void criarUmNovoBairro() {
+        // setup Bairro mock
+        when(mockBairro.getArea()).thenReturn(a2);
+        when(mockBairro.getNome()).thenReturn("Auxiliadora");
+        when(mockBairro.getCustoTransporte()).thenReturn(10.0);
+
+        // create Bairro for test
         Bairro bairro = new Bairro("Auxiliadora", a2, 10);
+
+        // Asserts
+        assertEquals(mockBairro.getArea(), bairro.getArea());
+        assertEquals(mockBairro.getCustoTransporte(), bairro.getCustoTransporte());
+        assertEquals(mockBairro.getNome(), bairro.getNome());
+        // Assert for toString layout
+        assertTrue(bairro.toString().contains("Bairro [area="));
+        assertTrue(bairro.toString().contains(", nome="));
+        assertTrue(bairro.toString().contains("]"));
+
     }
 
     @Test
