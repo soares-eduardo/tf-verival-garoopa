@@ -1,6 +1,7 @@
 package com.eduardojoao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -13,7 +14,6 @@ import com.eduardojoao.entidades.geometria.Reta;
 import com.eduardojoao.entidades.geometria.SituacaoReta;
 
 import org.junit.jupiter.api.*;
-import org.mockito.Mock;
 
 /**
  * BairroTest
@@ -40,14 +40,11 @@ public class BairroTest {
         when(a2.classifica(reta2)).thenReturn(SituacaoReta.TODA_FORA);
         when(a2.classifica(reta1)).thenReturn(SituacaoReta.INTERSECTA);
     }
-
-    @Mock
-    Bairro mockBairro = mock(Bairro.class);
     
-    // TODO
     @Test
     public void criarUmNovoBairro() {
-        // setup Bairro mock
+        // setup mocks
+        Bairro mockBairro = mock(Bairro.class);
         when(mockBairro.getArea()).thenReturn(a2);
         when(mockBairro.getNome()).thenReturn("Auxiliadora");
         when(mockBairro.getCustoTransporte()).thenReturn(10.0);
@@ -63,6 +60,46 @@ public class BairroTest {
         assertTrue(bairro.toString().contains("Bairro [area="));
         assertTrue(bairro.toString().contains(", nome="));
         assertTrue(bairro.toString().contains("]"));
+
+    }
+    
+    @Test
+    public void testNovoBairroRetangular() {
+        // setup mocks
+        Bairro mockBairroRetangular = mock(Bairro.class);
+        when(mockBairroRetangular.getNome()).thenReturn("Cristal");
+        when(mockBairroRetangular.getCustoTransporte()).thenReturn(5.0);
+
+        // create Bairro Retangular for test
+        Bairro bairroRetangular =  Bairro.novoBairroRetangular("Cristal", pSupEsq, 1, 2, 5);
+
+        // Asserts
+        assertEquals(mockBairroRetangular.getCustoTransporte(), bairroRetangular.getCustoTransporte());
+        assertEquals(mockBairroRetangular.getNome(), bairroRetangular.getNome());
+        assertEquals(4, bairroRetangular.getArea().getPInfDir().getX());
+        assertEquals(3, bairroRetangular.getArea().getPInfDir().getY());
+        assertEquals(3, bairroRetangular.getArea().getPSupEsq().getX());
+        assertEquals(5, bairroRetangular.getArea().getPSupEsq().getY());
+
+    }
+    
+    @Test
+    public void testNovoBairroQuadrado() {
+        // setup mocks
+        Bairro mockBairroQuadrado = mock(Bairro.class);
+        when(mockBairroQuadrado.getNome()).thenReturn("Alvorada");
+        when(mockBairroQuadrado.getCustoTransporte()).thenReturn(5.0);
+
+        // create Bairro Retangular for test
+        Bairro bairroQuadrado =  Bairro.novoBairroQuadrado("Alvorada", pSupEsq, 1, 5);
+
+        // Asserts
+        assertEquals(mockBairroQuadrado.getCustoTransporte(), bairroQuadrado.getCustoTransporte());
+        assertEquals(mockBairroQuadrado.getNome(), bairroQuadrado.getNome());
+        assertEquals(4, bairroQuadrado.getArea().getPInfDir().getX());
+        assertEquals(4, bairroQuadrado.getArea().getPInfDir().getY());
+        assertEquals(3, bairroQuadrado.getArea().getPSupEsq().getX());
+        assertEquals(5, bairroQuadrado.getArea().getPSupEsq().getY());
 
     }
 
@@ -91,5 +128,18 @@ public class BairroTest {
 
         // then
         assertTrue(mensagemAtual.contains(mensagemEsperada));
+    }
+    
+    @Test
+    public void testEquals() {
+
+        // setup instances
+        Bairro BairroExperado = new Bairro("Restinga Velha", a1, 10);
+        Bairro bairroIgual = new Bairro("Restinga Velha", a1, 10);
+        Bairro bairroDiferente = new Bairro("Assunção", a2, 5);
+
+        // then
+        assertTrue(BairroExperado.equals(bairroIgual));
+        assertFalse(BairroExperado.equals(bairroDiferente));
     }
 }
