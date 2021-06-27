@@ -175,4 +175,18 @@ public class AreaTest {
         // then
         assertFalse(cod);
     }
+
+    @Test
+    public void retornarEqualsRetaFalse() {
+
+        // given
+        Reta reta = new Reta(new Ponto(2,3), new Ponto(5, 6));
+        Object object = new Object();
+
+        // when
+        boolean cod = reta.equals(object);
+
+        // then
+        assertFalse(cod);
+    }
 }
