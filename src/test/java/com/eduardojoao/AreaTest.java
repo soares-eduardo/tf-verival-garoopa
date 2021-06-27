@@ -94,6 +94,7 @@ public class AreaTest {
 
         // when
         byte cod = areaTeste.codificaPonto(ponto);
+        areaTeste.toString();
 
         // then
         assertEquals(9, cod);
