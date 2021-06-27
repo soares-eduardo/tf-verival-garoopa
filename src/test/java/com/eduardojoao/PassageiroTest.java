@@ -80,6 +80,7 @@ public class PassageiroTest {
 
         // when
 
+        passageiroTeste.toString();
         passageiroTeste.infoPontuacao(pontuacao);
 
         // then

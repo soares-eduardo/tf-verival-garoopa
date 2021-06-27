@@ -1,6 +1,7 @@
 package com.eduardojoao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.Collection;
 import java.util.List;
@@ -33,6 +34,7 @@ public class RoteiroTest {
     @Test
     public void testarRota() {
         Roteiro script  = new Roteiro(listaBairros.get(1), listaBairros.get(4), listaBairros);
+        script.toString();
         Reta rota = new Reta(new Ponto(40, 35), new Ponto(50,15));
         assertEquals(rota, script.getRota());
     }
@@ -50,5 +52,18 @@ public class RoteiroTest {
 
         Collection<Bairro> bairrosTestados = script.bairrosPercoridos();
         assertEquals(bairrosPercorridos, bairrosTestados);
+    }
+
+    @Test
+    public void retornarEqualsFalse() {
+        // given
+        Roteiro script  = new Roteiro(listaBairros.get(1), listaBairros.get(4), listaBairros);
+        Object object = new Object();
+
+        // when
+        boolean cod = script.equals(object);
+
+        // then
+        assertFalse(cod);
     }
 }

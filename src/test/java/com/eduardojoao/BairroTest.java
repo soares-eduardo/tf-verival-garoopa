@@ -142,4 +142,17 @@ public class BairroTest {
         assertTrue(BairroExperado.equals(bairroIgual));
         assertFalse(BairroExperado.equals(bairroDiferente));
     }
+
+    @Test
+    public void retornarEqualsFalse() {
+
+        // given
+        Object object = new Object();
+
+        // when
+        boolean cod = bairroTeste.equals(object);
+
+        // then
+        assertFalse(cod);
+    }
 }

@@ -58,4 +58,29 @@ public class CalculoCustoViagemRelampagoTest {
         double descontoPromocaoSazonal = calculoCustoViagemRelampago.descontoPromocaoSazonal();
         assertEquals(3.75, descontoPromocaoSazonal);
     }
+
+    @Test
+    public void testarDescontoPontuacaoSemDescontoPorPontuacao() {
+        when(passageiro.getPontuacaoMedia()).thenReturn(3);
+        double descontoPontuacao = calculoCustoViagemRelampago.descontoPontuacao();
+        assertEquals(0.0, descontoPontuacao);
+    }
+
+    @Test
+    public void testarDescontoPontuacaoSemDescontoPorQuantidadeDeAvaliacoes() {
+        when(passageiro.getQtdadeAvaliacoes()).thenReturn(5);
+        double descontoPontuacao = calculoCustoViagemRelampago.descontoPontuacao();
+        assertEquals(0.0, descontoPontuacao);
+    }
+
+    @Test
+    public void testarDescontoPromocaoSazonalSemDesconto() {
+        Area area = new Area(new Ponto(2, 5), new Ponto(4, 3));
+        when(roteiro.bairrosPercoridos())
+                .thenReturn(List.of(new Bairro("Bom Fim", area, 10), new Bairro("Petropolis", area, 20),
+                        new Bairro("Menino Deus", area, 30)));
+
+        double descontoPromocaoSazonal = calculoCustoViagemRelampago.descontoPromocaoSazonal();
+        assertEquals(0.0, descontoPromocaoSazonal);
+    }
 }
