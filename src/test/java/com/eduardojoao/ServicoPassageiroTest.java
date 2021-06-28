@@ -93,6 +93,7 @@ public class ServicoPassageiroTest {
         CustoViagem cv = mock(CustoViagem.class);
 
         Viagem viagemAtual = servicosPassageiro.criaViagem(1, roteiro, "60076180050");
+        viagemAtual.toString();
         Viagem viagemEsperada = new Viagem(1, viagemAtual.getDataHora(), roteiro, passageiro, cv.custoViagem(roteiro, passageiro));
         
         assertEquals(viagemEsperada.getId(), viagemAtual.getId());

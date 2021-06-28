@@ -64,7 +64,6 @@ public class CalculoCustoViagemVeraoTest {
         Area area = new Area(new Ponto(2, 5), new Ponto(4, 3));
         when(roteiro.bairrosPercoridos())
                 .thenReturn(List.of(new Bairro("Bom Fim", area, 10), new Bairro("Petropolis", area, 20)));       
-                         
         double descontoPromocaoSazonal = calculoCustoViagemVerao.descontoPromocaoSazonal();
         assertEquals(0.0, descontoPromocaoSazonal);
     }

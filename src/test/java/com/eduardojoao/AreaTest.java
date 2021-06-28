@@ -1,6 +1,7 @@
 package com.eduardojoao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -134,6 +135,8 @@ public class AreaTest {
         //given
         areaTeste = new Area(new Ponto(10,50), new Ponto(60,10));
         Reta reta = new Reta(new Ponto(x1,y1), new Ponto(x2, y2));
+        reta.toString();
+        double tamanho = reta.tamanho();
 
         // when
         SituacaoReta statusReta = switch(status) {
@@ -145,5 +148,46 @@ public class AreaTest {
 
         //then
         assertEquals(statusReta, areaTeste.classifica(reta));
+        assertEquals(20, tamanho);
+    }
+
+    @Test
+    public void retornarEqualsFalse() {
+
+        // given
+        Object object = new Object();
+
+        // when
+        boolean cod = areaTeste.equals(object);
+
+        // then
+        assertFalse(cod);
+    }
+
+    @Test
+    public void retornarEqualsPontoFalse() {
+
+        // given
+        Object object = new Object();
+
+        // when
+        boolean cod = pSupEsq.equals(object);
+
+        // then
+        assertFalse(cod);
+    }
+
+    @Test
+    public void retornarEqualsRetaFalse() {
+
+        // given
+        Reta reta = new Reta(new Ponto(2,3), new Ponto(5, 6));
+        Object object = new Object();
+
+        // when
+        boolean cod = reta.equals(object);
+
+        // then
+        assertFalse(cod);
     }
 }

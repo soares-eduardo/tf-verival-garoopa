@@ -22,10 +22,6 @@ public class Passageiro {
 		this.qtdadeAvaliacoes = qtdadeAvaliacoes;
 	}
 
-	public Passageiro() {
-		
-	}
-
 	public String getCPF() {
 		return cpf;
 	}
