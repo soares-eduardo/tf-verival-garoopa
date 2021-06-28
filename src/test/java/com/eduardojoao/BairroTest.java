@@ -155,4 +155,16 @@ public class BairroTest {
         // then
         assertFalse(cod);
     }
+
+    @Test
+    public void retornarEquals() {
+
+        // given
+        Bairro bairro = Bairro.novoBairroQuadrado("Bom Fim", pSupEsq, 2, 5);
+        // when
+        boolean cod = bairroTeste.equals(bairro);
+
+        // then
+        assertFalse(cod);
+    }
 }
